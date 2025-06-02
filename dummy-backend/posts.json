@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "name": "Test 2",
+      "message": "And this is another one",
+      "id": "0.1495657251373459"
+    },
+    {
+      "name": "Test",
+      "message": "This is a test post for the backend",
+      "id": "0.49422555631447396"
+    }
+  ]
+}
