@@ -1,3 +1,4 @@
+import Modal from "../components/Modal";
 import { useState } from "react";
 import classes from "./NewPost.module.css";
 
@@ -41,26 +42,28 @@ function NewPost(props: NewPostProps) {
   }
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" required onChange={nameChangeHandler} />
-      </div>
-      <div>
-        <label htmlFor="message">Text</label>
-        <textarea
-          id="message"
-          required
-          onChange={messageChangeHandler}
-        ></textarea>
-      </div>
-      <p className={classes.actions}>
-        <button type="button" onClick={props.onCancel}>
-          Cancel
-        </button>
-        <button>Submit</button>
-      </p>
-    </form>
+    <Modal onClose={props.onStopPosting}>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" required onChange={nameChangeHandler} />
+        </div>
+        <div>
+          <label htmlFor="message">Text</label>
+          <textarea
+            id="message"
+            required
+            onChange={messageChangeHandler}
+          ></textarea>
+        </div>
+        <p className={classes.actions}>
+          <button type="button" onClick={props.onCancel}>
+            Cancel
+          </button>
+          <button>Submit</button>
+        </p>
+      </form>
+    </Modal>
   );
 }
 

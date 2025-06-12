@@ -1,13 +1,8 @@
-import Modal from "./Modal";
 import Post from "./Post";
 import classes from "./PostList.module.css";
-import NewPost from "./NewPost";
 import { useEffect, useState } from "react";
 
-function PostList(props: {
-  isModalVisible: boolean;
-  onStopPosting: () => void;
-}) {
+function PostList() {
 
   const [posts, setPosts] = useState<{ name: string; message: string }[]>([])
   const [isFetching, setIsFetching] = useState(false);
@@ -23,27 +18,20 @@ function PostList(props: {
     fetchPosts();
   }, []);
 
-  function addPostHandler(postData: { name: string; message: string }) {
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    }
-    )
-    setPosts((previousPosts) => [postData, ...previousPosts])
-  }
+  //   function addPostHandler(postData: { name: string; message: string }) {
+  //   fetch('http://localhost:8080/posts', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(postData),
+  //   }
+  //   )
+  //   setPosts((previousPosts) => [postData, ...previousPosts])
+  // }
 
   return (
     <>
-      {props.isModalVisible && (
-        <Modal onClose={props.onStopPosting}>
-          <NewPost onAddPost={addPostHandler}
-            onCancel={props.onStopPosting}
-          />
-        </Modal>
-      )}
       {!isFetching && posts.length > 0 && (<ul className={classes.posts}>
         {/* <Post name={name} body={message} /> */}
         {posts.map((post, index) => (
