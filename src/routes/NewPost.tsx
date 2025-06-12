@@ -42,7 +42,7 @@ function NewPost(props: NewPostProps) {
   }
 
   return (
-    <Modal onClose={props.onStopPosting}>
+    <Modal>
       <form className={classes.form} onSubmit={submitHandler}>
         <div>
           <label htmlFor="name">Name</label>
