@@ -1,15 +1,16 @@
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useState } from "react";
 import classes from "./NewPost.module.css";
 
 interface NewPostProps {
-  onCancel: () => void;
   onAddPost: (postData: { name: string; message: string }) => void;
 }
 
 function NewPost(props: NewPostProps) {
   const [message, setMessage] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const navigate = useNavigate();
 
   function messageChangeHandler(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setMessage(event.target.value);
@@ -38,7 +39,7 @@ function NewPost(props: NewPostProps) {
     // });
     // Close the modal after submission
     props.onAddPost(postData);
-    props.onCancel();
+    navigate(".."); // Navigate back to the previous page
   }
 
   return (
@@ -57,9 +58,9 @@ function NewPost(props: NewPostProps) {
           ></textarea>
         </div>
         <p className={classes.actions}>
-          <button type="button" onClick={props.onCancel}>
+          <Link to=".." type="button">
             Cancel
-          </button>
+          </Link>
           <button>Submit</button>
         </p>
       </form>
